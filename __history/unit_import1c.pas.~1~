@@ -1,0 +1,14 @@
+unit unit_import1c;
+
+interface
+
+type
+  TDivisionImport1C = class
+    id: string;
+    pid: string;
+    name: string;
+  end;
+
+implementation
+
+end.

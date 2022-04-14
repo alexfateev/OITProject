@@ -1,0 +1,123 @@
+object fmImport1CMatchingFileds: TfmImport1CMatchingFileds
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = #1057#1086#1086#1090#1074#1077#1090#1089#1090#1074#1080#1077' '#1087#1086#1083#1077#1081
+  ClientHeight = 441
+  ClientWidth = 672
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnClose = FormClose
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object ComboBox1: TComboBox
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 666
+    Height = 21
+    Align = alTop
+    Style = csDropDownList
+    TabOrder = 0
+    ExplicitLeft = 0
+    ExplicitTop = 0
+    ExplicitWidth = 335
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 404
+    Width = 672
+    Height = 37
+    Align = alBottom
+    BevelEdges = [beTop]
+    BevelKind = bkFlat
+    BevelOuter = bvNone
+    TabOrder = 1
+    ExplicitWidth = 345
+    object Button1: TButton
+      AlignWithMargins = True
+      Left = 512
+      Top = 5
+      Width = 75
+      Height = 25
+      Margins.Left = 0
+      Margins.Top = 5
+      Margins.Right = 5
+      Margins.Bottom = 5
+      Align = alRight
+      Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
+      TabOrder = 0
+      OnClick = Button1Click
+      ExplicitLeft = 144
+      ExplicitTop = 8
+    end
+    object Button2: TButton
+      AlignWithMargins = True
+      Left = 592
+      Top = 5
+      Width = 75
+      Height = 25
+      Margins.Left = 0
+      Margins.Top = 5
+      Margins.Right = 5
+      Margins.Bottom = 5
+      Align = alRight
+      Caption = #1054#1090#1084#1077#1085#1072
+      TabOrder = 1
+      OnClick = Button2Click
+      ExplicitLeft = 248
+      ExplicitTop = 8
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 27
+    Width = 672
+    Height = 377
+    Align = alClient
+    BevelOuter = bvNone
+    TabOrder = 2
+    ExplicitLeft = 256
+    ExplicitTop = 176
+    ExplicitWidth = 321
+    ExplicitHeight = 185
+    object ValueListEditor1: TValueListEditor
+      AlignWithMargins = True
+      Left = 3
+      Top = 0
+      Width = 319
+      Height = 374
+      Margins.Top = 0
+      Align = alClient
+      TabOrder = 0
+      OnGetPickList = ValueListEditor1GetPickList
+      ExplicitWidth = 316
+      ColWidths = (
+        150
+        163)
+    end
+    object ValueListEditor2: TValueListEditor
+      AlignWithMargins = True
+      Left = 325
+      Top = 0
+      Width = 344
+      Height = 374
+      Margins.Left = 0
+      Margins.Top = 0
+      Align = alRight
+      TabOrder = 1
+      ExplicitLeft = 328
+      ExplicitHeight = 377
+      ColWidths = (
+        150
+        188)
+    end
+  end
+end

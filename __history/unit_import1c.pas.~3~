@@ -1,0 +1,24 @@
+unit unit_import1c;
+
+interface
+
+type
+  TDivisionImport1C = class
+    id: string;
+    pid: string;
+    name: string;
+    constructor Create(id, pid, name: string);
+  end;
+
+implementation
+
+{ TDivisionImport1C }
+
+constructor TDivisionImport1C.Create(id, pid, name: string);
+begin
+  self.id := id;
+  self.pid := pid;
+  self.name := name;
+end;
+
+end.

@@ -1,0 +1,173 @@
+object fmImport1CMatchingFileds: TfmImport1CMatchingFileds
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = #1057#1086#1086#1090#1074#1077#1090#1089#1090#1074#1080#1077' '#1087#1086#1083#1077#1081
+  ClientHeight = 441
+  ClientWidth = 672
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnClose = FormClose
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 404
+    Width = 672
+    Height = 37
+    Align = alBottom
+    BevelEdges = [beTop]
+    BevelKind = bkFlat
+    BevelOuter = bvNone
+    TabOrder = 0
+    ExplicitWidth = 345
+    object btnSave: TButton
+      AlignWithMargins = True
+      Left = 512
+      Top = 5
+      Width = 75
+      Height = 25
+      Margins.Left = 0
+      Margins.Top = 5
+      Margins.Right = 5
+      Margins.Bottom = 5
+      Align = alRight
+      Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
+      TabOrder = 0
+      OnClick = btnSaveClick
+      ExplicitLeft = 144
+      ExplicitTop = 8
+    end
+    object btnCancel: TButton
+      AlignWithMargins = True
+      Left = 592
+      Top = 5
+      Width = 75
+      Height = 25
+      Margins.Left = 0
+      Margins.Top = 5
+      Margins.Right = 5
+      Margins.Bottom = 5
+      Align = alRight
+      Caption = #1054#1090#1084#1077#1085#1072
+      TabOrder = 1
+      OnClick = btnCancelClick
+      ExplicitLeft = 248
+      ExplicitTop = 8
+    end
+  end
+  object GridPanel1: TGridPanel
+    Left = 0
+    Top = 0
+    Width = 672
+    Height = 404
+    Align = alClient
+    BevelOuter = bvNone
+    Caption = 'GridPanel1'
+    ColumnCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = Panel3
+        Row = 0
+      end
+      item
+        Column = 1
+        Control = Panel4
+        Row = 0
+      end>
+    RowCollection = <
+      item
+        Value = 100.000000000000000000
+      end>
+    TabOrder = 1
+    ExplicitLeft = 80
+    ExplicitTop = 112
+    ExplicitWidth = 553
+    ExplicitHeight = 257
+    object Panel3: TPanel
+      Left = 0
+      Top = 0
+      Width = 335
+      Height = 402
+      Align = alClient
+      BevelOuter = bvNone
+      TabOrder = 0
+      ExplicitLeft = 1
+      ExplicitTop = 1
+      ExplicitWidth = 275
+      ExplicitHeight = 255
+      object RzLabel1: TRzLabel
+        AlignWithMargins = True
+        Left = 3
+        Top = 3
+        Width = 329
+        Height = 26
+        Align = alTop
+        Caption = 'RzLabel1'#13'cfggg'
+        ExplicitLeft = 4
+        ExplicitTop = 4
+        ExplicitWidth = 43
+      end
+      object vlDivision: TValueListEditor
+        AlignWithMargins = True
+        Left = 3
+        Top = 35
+        Width = 329
+        Height = 364
+        Align = alClient
+        TabOrder = 0
+        TitleCaptions.Strings = (
+          #1047#1085#1072#1095#1077#1085#1080#1077
+          #1047#1072#1075#1086#1083#1086#1074#1082#1080' '#1080#1079' CSV')
+        OnGetPickList = vlDivisionGetPickList
+        ExplicitLeft = 4
+        ExplicitTop = 36
+        ExplicitWidth = 267
+        ExplicitHeight = 215
+        ColWidths = (
+          150
+          173)
+      end
+    end
+    object Panel4: TPanel
+      Left = 335
+      Top = 0
+      Width = 335
+      Height = 402
+      Align = alClient
+      BevelOuter = bvNone
+      TabOrder = 1
+      ExplicitLeft = 276
+      ExplicitTop = 1
+      ExplicitWidth = 276
+      ExplicitHeight = 255
+      object vlEmployee: TValueListEditor
+        AlignWithMargins = True
+        Left = 0
+        Top = 3
+        Width = 332
+        Height = 396
+        Margins.Left = 0
+        Align = alClient
+        TabOrder = 0
+        ColWidths = (
+          150
+          176)
+      end
+    end
+  end
+end
