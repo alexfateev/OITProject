@@ -81,13 +81,12 @@ end;
 
 procedure TfmSettings.btnImport1CInfoClick(Sender: TObject);
 var
-  Import1c: TImport1C;
+  import1c: TImport1C;
 begin
-  Import1c := TImport1C.Create;
-  Import1c.ShowInfo;
-  Import1c.Details;
-  Import1c.Free;
-
+  import1c := TImport1C.Create;
+  //import1c.Prepare;
+  import1c.ShowInfo;
+  import1c.Free;
 end;
 
 procedure TfmSettings.btnImport1CMatchingFieldsClick(Sender: TObject);

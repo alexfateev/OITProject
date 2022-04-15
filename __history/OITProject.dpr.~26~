@@ -8,8 +8,7 @@ uses
   form_settings in 'form_settings.pas' {fmSettings},
   Import1c in 'Import1c.pas',
   form_Import1C_MatchingFileds in 'form_Import1C_MatchingFileds.pas' {fmImport1CMatchingFileds},
-  service in 'service.pas',
-  PConst in 'PConst.pas';
+  service in 'service.pas';
 
 {$R *.res}
 

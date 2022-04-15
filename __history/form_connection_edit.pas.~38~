@@ -55,7 +55,7 @@ begin
   config.username := edUsername.Text;
   config.password := edPassword.Text;
   config.database := edDatabase.Text;
-  GlobalConfigSave(config);
+  SaveGlobalConfig(config);
   ModalResult := mrOk;
 end;
 
@@ -89,7 +89,7 @@ var
   config: TGlobalConfig;
 begin
   Caption := CAPTION_CONNECTIONEDIT;
-  config := GlobalConfigLoad;
+  config := LoadGlobalConfig;
   edServer.Text := config.server;
   edPort.Text := config.port.ToString;
   edUsername.Text := config.username;

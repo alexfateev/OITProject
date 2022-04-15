@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, RzPanel, Vcl.StdCtrls,
   System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList, Vcl.Menus,
-  RzStatus, PConst;
+  RzStatus;
 
 type
   TfmMain = class(TForm)
@@ -71,6 +71,7 @@ procedure TfmMain.FormCreate(Sender: TObject);
 begin
   Caption := CAPTION_MAINFORM;
   UpdateConnectionStatus;
+
 end;
 
 procedure TfmMain.UpdateConnectionStatus;

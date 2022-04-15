@@ -55,7 +55,7 @@ begin
   config.username := edUsername.Text;
   config.password := edPassword.Text;
   config.database := edDatabase.Text;
-  GlobalConfigSave(config);
+  SaveGlobalConfig(config);
   ModalResult := mrOk;
 end;
 

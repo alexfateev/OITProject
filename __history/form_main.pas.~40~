@@ -71,6 +71,7 @@ procedure TfmMain.FormCreate(Sender: TObject);
 begin
   Caption := CAPTION_MAINFORM;
   UpdateConnectionStatus;
+
 end;
 
 procedure TfmMain.UpdateConnectionStatus;

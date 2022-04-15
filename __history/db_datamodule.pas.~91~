@@ -6,7 +6,7 @@ uses
   Vcl.Controls, System.SysUtils, System.Classes, UniProvider, MySQLUniProvider,
   Data.DB,
   DBAccess, Uni, INIFiles, Vcl.Dialogs, Vcl.Forms, Winapi.Windows, MemDS,
-  System.Generics.Collections, PConst;
+  System.Generics.Collections;
 
 type
 
@@ -61,7 +61,7 @@ procedure TDBDataModule.DBConnectionBeforeConnect(Sender: TObject);
 var
   config: TGlobalConfig;
 begin
-  config := GlobalConfigLoad;
+  config := LoadGlobalConfig;
   with DBConnection do
   begin
     server := config.server;

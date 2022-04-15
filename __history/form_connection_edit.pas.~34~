@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Uni, PConst;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Uni;
 
 type
   TfmConnectionEdit = class(TForm)
@@ -39,7 +39,7 @@ implementation
 
 {$R *.dfm}
 
-uses db_datamodule, service, Vcl.Dialogs;
+uses db_datamodule;
 
 procedure TfmConnectionEdit.btnCancelClick(Sender: TObject);
 begin
@@ -55,7 +55,7 @@ begin
   config.username := edUsername.Text;
   config.password := edPassword.Text;
   config.database := edDatabase.Text;
-  GlobalConfigSave(config);
+  DBDataModule.SaveConfig(config);
   ModalResult := mrOk;
 end;
 
@@ -78,7 +78,7 @@ begin
       con.Disconnect;
     except
       on E: Exception do
-//        messagedlg
+        DBDataModule.ShowError(E.Message, E.ClassName);
     end;
   end;
   con.Free;
@@ -89,7 +89,7 @@ var
   config: TGlobalConfig;
 begin
   Caption := CAPTION_CONNECTIONEDIT;
-  config := GlobalConfigLoad;
+  config := DBDataModule.LoadConfig;
   edServer.Text := config.server;
   edPort.Text := config.port.ToString;
   edUsername.Text := config.username;

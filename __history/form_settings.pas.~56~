@@ -81,13 +81,11 @@ end;
 
 procedure TfmSettings.btnImport1CInfoClick(Sender: TObject);
 var
-  Import1c: TImport1C;
+  info: TImport1CInfo;
 begin
-  Import1c := TImport1C.Create;
-  Import1c.ShowInfo;
-  Import1c.Details;
-  Import1c.Free;
-
+  info.Update;
+  ShowMessage(info.division + ':' + info.division_date + #13#10 +
+    info.employee_filename + ':' + info.employee_date);
 end;
 
 procedure TfmSettings.btnImport1CMatchingFieldsClick(Sender: TObject);
@@ -125,7 +123,7 @@ end;
 
 procedure TfmSettings.LoadParam;
 begin
-  conf := GlobalConfigLoad;
+  conf := LoadGlobalConfig;
   edImport1CDirectory.Text := conf.Import1CDirectory;
   edImport1CFileDivision.Text := conf.Import1CFileDivision;
   edImport1CFileEmployee.Text := conf.Import1CFileEmployee;
@@ -140,7 +138,7 @@ begin
   conf.Import1CFileEmployee := Trim(edImport1CFileEmployee.Text);
   conf.Import1CCheckNewFileOnStart := cbImport1CCheckOnStart.Checked;
   conf.Import1CDelimiter := edImport1cDelimiter.Text;
-  GlobalConfigSave(conf);
+  SaveGlobalConfig(conf);
 end;
 
 end.

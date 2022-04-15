@@ -1,0 +1,85 @@
+unit service;
+
+interface
+
+type
+  TGlobalConfig = record
+    server: ShortString;
+    port: word;
+    username: ShortString;
+    password: ShortString;
+    database: ShortString;
+    Import1CDirectory: ShortString;
+    Import1CFileDivision: ShortString;
+    Import1CFileEmployee: ShortString;
+    Import1CCheckNewFileOnStart: boolean;
+    Import1CDelimiter: ShortString;
+    procedure default;
+  end;
+
+function LoadConfig: TGlobalConfig;
+procedure SaveConfig(config: TGlobalConfig);
+function GetConfigFilename: string;
+
+implementation
+
+uses
+  System.Classes, System.SysUtils, Vcl.Forms, Vcl.Dialogs;
+
+function GetConfigFilename: string;
+begin
+  result := ExtractFilePath(Application.ExeName) + '\config.dat';
+end;
+
+function LoadConfig: TGlobalConfig;
+var
+  f: TFileStream;
+  ConfigINI: TGlobalConfig;
+begin
+  ConfigINI.default;
+  f := nil;
+  try
+    f := TFileStream.Create(GetConfigFilename, fmOpenRead);
+    f.ReadBuffer(ConfigINI, SizeOf(TGlobalConfig));
+  except
+    on E: Exception do
+      // ShowError(e.Message,e.ClassName);
+  end;
+  f.Free;
+  result := ConfigINI;
+end;
+
+procedure SaveConfig(config: TGlobalConfig);
+var
+  f: TFileStream;
+begin
+  if FileExists(GetConfigFilename) then
+    f := TFileStream.Create(GetConfigFilename, fmOpenWrite)
+  else
+    f := TFileStream.Create(GetConfigFilename, fmCreate);
+  try
+    f.WriteBuffer(config, SizeOf(TGlobalConfig));
+  except
+    on E: Exception do
+      MessageDlg(e.Message,mtError,[mbOK],0);
+  end;
+  f.Free;
+end;
+
+{ TConfigINI }
+
+procedure TGlobalConfig.default;
+begin
+  server := 'localhost';
+  port := 3306;
+  username := 'root';
+  password := '';
+  database := '';
+  Import1CDirectory := '';
+  Import1CFileDivision := 'Подразделения*.csv';
+  Import1CFileEmployee := 'Сотрудники*.csv';
+  Import1CCheckNewFileOnStart := false;
+  Import1CDelimiter := ';';
+end;
+
+end.

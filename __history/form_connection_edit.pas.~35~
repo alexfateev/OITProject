@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Uni, PConst;
+  Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Uni;
 
 type
   TfmConnectionEdit = class(TForm)
@@ -55,7 +55,7 @@ begin
   config.username := edUsername.Text;
   config.password := edPassword.Text;
   config.database := edDatabase.Text;
-  GlobalConfigSave(config);
+  SaveConfig(config);
   ModalResult := mrOk;
 end;
 
@@ -89,7 +89,7 @@ var
   config: TGlobalConfig;
 begin
   Caption := CAPTION_CONNECTIONEDIT;
-  config := GlobalConfigLoad;
+  config := LoadConfig;
   edServer.Text := config.server;
   edPort.Text := config.port.ToString;
   edUsername.Text := config.username;

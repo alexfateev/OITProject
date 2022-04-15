@@ -6,7 +6,25 @@ uses
   Vcl.Controls, System.SysUtils, System.Classes, UniProvider, MySQLUniProvider,
   Data.DB,
   DBAccess, Uni, INIFiles, Vcl.Dialogs, Vcl.Forms, Winapi.Windows, MemDS,
-  System.Generics.Collections, PConst;
+  System.Generics.Collections;
+
+const
+  SECRET_KEY: string = 'SeCrEtKeY';
+
+  CAPTION_MAINFORM: string = 'OIT Project';
+  CAPTION_CONNECTIONEDIT: string = 'Настройки подключения';
+  CAPTION_SETTINGSFORM: string = 'Параметры';
+
+  TABLE_DIVISION: string = 'divisions';
+  DIV_ID: string = 'div_id';
+  DIV_PID: string = 'div_pid';
+  DIV_NAME: string = 'div_name';
+  DIV_COMMENT: string = 'div_comment';
+  DIV_DISABLE: string = 'div_disable';
+  DIV_SYNC1C: string = 'div_sync1c';
+  DIV_SYNC1C_ID: string = 'div_sync1c_id';
+  DIV_SYNC1C_PID: string = 'div_sync1c_pid';
+  DIV_SYNC1C_NAME: string = 'div_sync1c_name';
 
 type
 
@@ -61,7 +79,7 @@ procedure TDBDataModule.DBConnectionBeforeConnect(Sender: TObject);
 var
   config: TGlobalConfig;
 begin
-  config := GlobalConfigLoad;
+  config := LoadConfig;
   with DBConnection do
   begin
     server := config.server;
@@ -71,5 +89,12 @@ begin
     database := config.database;
   end;
 end;
+
+procedure TDBDataModule.DivisionInsert(division: TDivisionImport1C);
+
+begin
+
+end;
+
 
 end.

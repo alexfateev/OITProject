@@ -1,4 +1,4 @@
-unit Import1c;
+п»їunit Import1c;
 
 interface
 
@@ -18,27 +18,17 @@ type
     fEmployeeFilename: string;
     fEmployeeFile: TStringList;
     fEmployeeHead: TStringList;
-    fEmployeeFileDate: TDateTime;
     fDivisionFilename: string;
     fDivisionFile: TStringList;
     fDivisionHead: TStringList;
-    fDivisionFileDate: TDateTime;
-    fDetail: string;
     function GetFileName(filename: string; path: string = ''): string;
     function GetLastFile(path, pattern: string): string;
     function LoadFile(filename: string): TStringList;
-    function GetHeaderFromFile(f: TStringList): TStringList;
-    function GetFileAge(filename: string): TDateTime;
   public
     property EmployeeFilename: string read fEmployeeFilename;
     property DivisionFilename: string read fDivisionFilename;
-
     procedure Prepare;
     function IsAllReady: boolean;
-    procedure ShowInfo;
-    procedure Details;
-    constructor Create; overload;
-    destructor Destroy; overload;
   end;
 
   TDivisionImport1C = class
@@ -69,7 +59,51 @@ type
 
   end;
 
+  TImport1CInfo = record
+    employee_filename: string;
+    employee_file: TStringList;
+    employee_date: string;
+    employee_header: TStringList;
+
+    division: string;
+    division_date: string;
+    division_header: TStringList;
+
+    procedure Update;
+  end;
+
+function Import1C_GetIniFile: TIniFile;
+function GetHeaderFile(filename: TStringList): TStringList;
+
 implementation
+
+var
+  conf: TGlobalConfig;
+  Import1CInfo: TImport1CInfo;
+
+function GetFileName(filename, path: string): string;
+begin
+  result := '';
+end;
+
+function GetHeaderFile(filename: TStringList): TStringList;
+var
+  f: TStringList;
+begin
+  f := TStringList.Create;
+  filename.Delimiter := ';';
+  if filename.Count <> 0 then
+    f.DelimitedText := filename[0];
+  result := f;
+end;
+
+function Import1C_GetIniFile: TIniFile;
+var
+  ini: TIniFile;
+begin
+  ini := TIniFile.Create(ExtractFilePath(Application.ExeName) + INI_IMPORT1C);
+  result := ini;
+end;
 
 { TDivisionImport1C }
 
@@ -80,60 +114,39 @@ begin
   fname := name;
 end;
 
+{ TImport1CInfo }
+
+procedure TImport1CInfo.Update;
+var
+  conf: TGlobalConfig;
+begin
+//  conf := LoadGlobalConfig;
+//
+//  employee_filename := GetFileName(conf.Import1CFileEmployee,
+//    conf.Import1CDirectory);
+//  employee_file := GetFile(employee_filename);
+//  employee_header := GetHeaderFile(employee_file);
+//  division := GetFileName(conf.Import1CFileDivision, conf.Import1CDirectory);
+//  if employee_filename <> '' then
+//    employee_date := Formatdatetime('dd.mm.yyyy',
+//      FileDateToDateTime(FileAge(employee_filename)))
+//  else
+//    employee_date := '';
+//  if division <> '' then
+//    division_date := Formatdatetime('dd.mm.yyyy',
+//      FileDateToDateTime(FileAge(division)))
+//  else
+//    division_date := '';
+end;
+
 { TImport1C }
 
-constructor TImport1C.Create;
-begin
-  inherited Create;
-  Prepare;
-end;
-
-destructor TImport1C.Destroy;
-begin
-  fEmployeeFile.Free;
-  fEmployeeHead.Free;
-  inherited;
-end;
-
-procedure TImport1C.Details;
-var
-  text: string;
-begin
-  if fEmployeeFilename.IsEmpty then
-    text := text + 'Файл сотрудников не найден'+#13#10;
-  if fEmployeeFile = nil then
-    text := text + 'Файл пуст';
-
-  if not text.IsEmpty then
-    ShowMessage(text);
-end;
-
-function TImport1C.GetFileAge(filename: string): TDateTime;
-begin
-  try
-    result := Tfile.GetCreationTime(filename);
-  except
-    result := 0;
-  end;
-end;
-
-function TImport1C.GetFileName(filename: string; path: string): string;
+function TImport1C.GetFileName(filename: string; path: string = ''): string;
 begin
   if FileExists(filename) then
     result := filename
   else
     result := GetLastFile(path, filename);
-end;
-
-function TImport1C.GetHeaderFromFile(f: TStringList): TStringList;
-var
-  r: TStringList;
-begin
-  r := TStringList.Create;
-  r.Delimiter := StrToChar(fconfig.Import1CDelimiter);
-  if f.Count <> 0 then
-    r.DelimitedText := f[0];
-  result := r;
 end;
 
 function TImport1C.GetLastFile(path, pattern: string): string;
@@ -157,17 +170,13 @@ begin
     end;
   except
     on E: Exception do
-      //MessageDlg(E.ClassName + ':' + E.Message, mtError, [mbOK], 0);
+      MessageDlg(E.ClassName + ':' + E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 function TImport1C.IsAllReady: boolean;
-var
-  value: boolean;
 begin
-  value := false;
-
-  result := value;
+  result := false;
 end;
 
 function TImport1C.LoadFile(filename: string): TStringList;
@@ -179,30 +188,14 @@ begin
     f.LoadFromFile(filename);
   except
     on E: Exception do
-      //MessageDlg(E.ClassName + ':' + E.Message, mtError, [mbOK], 0);
+      MessageDlg(E.ClassName + ':' + E.Message, mtError, [mbOK], 0);
   end;
   result := f;
 end;
 
 procedure TImport1C.Prepare;
 begin
-  fconfig := GlobalConfigLoad;
-
-  fEmployeeFilename := GetFileName(fconfig.Import1CFileEmployee,fconfig.Import1CDirectory);
-  fEmployeeFile := LoadFile(fEmployeeFilename);
-  fEmployeeHead := GetHeaderFromFile(fEmployeeFile);
-  fEmployeeFileDate := GetFileAge(fEmployeeFilename);
-
-  fDivisionFilename := GetFileName(fconfig.Import1CFileDivision,fconfig.Import1CDirectory);
-  fDivisionFile := LoadFile(fDivisionFilename);
-  fDivisionHead := GetHeaderFromFile(fDivisionFile);
-  fDivisionFileDate := GetFileAge(fDivisionFilename);
-end;
-
-procedure TImport1C.ShowInfo;
-begin
-  MessageDlg(fEmployeeFilename+#13#10+DateToStr(fEmployeeFileDate)+#13#10+
-  fEmployeeHead.Text, mtInformation, [mbOK], 0);
+  fconfig := LoadGlobalConfig;
 end;
 
 end.

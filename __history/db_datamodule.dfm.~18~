@@ -11,6 +11,7 @@ object DBDataModule: TDBDataModule
       'MySQL.UseUnicode=True')
     Username = 'root'
     Server = 'localhost'
+    Connected = True
     LoginPrompt = False
     BeforeConnect = DBConnectionBeforeConnect
     Left = 32

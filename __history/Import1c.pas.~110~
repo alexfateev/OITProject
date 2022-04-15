@@ -32,7 +32,6 @@ type
   public
     property EmployeeFilename: string read fEmployeeFilename;
     property DivisionFilename: string read fDivisionFilename;
-
     procedure Prepare;
     function IsAllReady: boolean;
     procedure ShowInfo;
@@ -162,12 +161,8 @@ begin
 end;
 
 function TImport1C.IsAllReady: boolean;
-var
-  value: boolean;
 begin
-  value := false;
-
-  result := value;
+  result := false;
 end;
 
 function TImport1C.LoadFile(filename: string): TStringList;

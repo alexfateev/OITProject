@@ -61,7 +61,7 @@ procedure TDBDataModule.DBConnectionBeforeConnect(Sender: TObject);
 var
   config: TGlobalConfig;
 begin
-  config := GlobalConfigLoad;
+  config := LoadGlobalConfig;
   with DBConnection do
   begin
     server := config.server;
