@@ -57,7 +57,7 @@ object fmSettings: TfmSettings
         Left = 3
         Top = 72
         Width = 785
-        Height = 233
+        Height = 297
         Align = alTop
         TabOrder = 0
         object Label1: TLabel
@@ -80,6 +80,13 @@ object fmSettings: TfmSettings
           Width = 101
           Height = 13
           Caption = #1060#1072#1081#1083' '#1057#1086#1090#1088#1091#1076#1085#1080#1082#1086#1074':'
+        end
+        object Label5: TLabel
+          Left = 480
+          Top = 200
+          Width = 103
+          Height = 13
+          Caption = #1056#1072#1079#1076#1077#1083#1080#1090#1077#1083#1100' '#1087#1086#1083#1077#1081':'
         end
         object edImport1CDirectory: TEdit
           Left = 16
@@ -158,6 +165,14 @@ object fmSettings: TfmSettings
           TabOrder = 8
           OnClick = btnImport1CInfoClick
         end
+        object edImport1cDelimiter: TEdit
+          Left = 480
+          Top = 219
+          Width = 49
+          Height = 21
+          MaxLength = 1
+          TabOrder = 9
+        end
       end
     end
   end
@@ -185,7 +200,6 @@ object fmSettings: TfmSettings
       Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
       TabOrder = 0
       OnClick = btnSaveClick
-      ExplicitLeft = 641
     end
     object btnCancel: TButton
       AlignWithMargins = True
@@ -216,8 +230,6 @@ object fmSettings: TfmSettings
       Caption = #1054#1082
       TabOrder = 2
       OnClick = btnOkClick
-      ExplicitLeft = 665
-      ExplicitTop = 3
     end
   end
   object OpenDialog: TOpenDialog

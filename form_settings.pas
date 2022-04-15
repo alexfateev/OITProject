@@ -31,6 +31,8 @@ type
     OpenDialog: TOpenDialog;
     btnOk: TButton;
     btnImport1CInfo: TButton;
+    edImport1cDelimiter: TEdit;
+    Label5: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure LoadConfig;
     procedure btnSaveClick(Sender: TObject);
@@ -44,7 +46,7 @@ type
     procedure btnImport1CInfoClick(Sender: TObject);
   private
     { Private declarations }
-    conf: TConfigINI;
+    conf: TGlobalConfig;
   public
     { Public declarations }
   end;
@@ -82,8 +84,8 @@ var
   info: TImport1CInfo;
 begin
   info.Update;
-  ShowMessage(info.division + ':' + info.division_date+#13#10+
-  info.employee + ':' + info.employee_date);
+  ShowMessage(info.division + ':' + info.division_date + #13#10 +
+    info.employee_filename + ':' + info.employee_date);
 end;
 
 procedure TfmSettings.btnImport1CMatchingFieldsClick(Sender: TObject);
@@ -126,6 +128,7 @@ begin
   edImport1CFileDivision.Text := conf.Import1CFileDivision;
   edImport1CFileEmployee.Text := conf.Import1CFileEmployee;
   cbImport1CCheckOnStart.Checked := conf.Import1CCheckNewFileOnStart;
+  edImport1cDelimiter.Text := conf.Import1CDelimiter;
 end;
 
 procedure TfmSettings.SaveConfig;
@@ -134,6 +137,7 @@ begin
   conf.Import1CFileDivision := Trim(edImport1CFileDivision.Text);
   conf.Import1CFileEmployee := Trim(edImport1CFileEmployee.Text);
   conf.Import1CCheckNewFileOnStart := cbImport1CCheckOnStart.Checked;
+  conf.Import1CDelimiter := edImport1cDelimiter.Text;
   DBDataModule.SaveConfig(conf);
 end;
 

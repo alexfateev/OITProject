@@ -27,8 +27,6 @@ object fmImport1CMatchingFileds: TfmImport1CMatchingFileds
     BevelKind = bkFlat
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = 404
-    ExplicitWidth = 345
     object btnSave: TButton
       AlignWithMargins = True
       Left = 528
@@ -43,8 +41,6 @@ object fmImport1CMatchingFileds: TfmImport1CMatchingFileds
       Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
       TabOrder = 0
       OnClick = btnSaveClick
-      ExplicitLeft = 144
-      ExplicitTop = 8
     end
     object btnCancel: TButton
       AlignWithMargins = True
@@ -60,8 +56,6 @@ object fmImport1CMatchingFileds: TfmImport1CMatchingFileds
       Caption = #1054#1090#1084#1077#1085#1072
       TabOrder = 1
       OnClick = btnCancelClick
-      ExplicitLeft = 248
-      ExplicitTop = 8
     end
   end
   object GridPanel1: TGridPanel
@@ -94,10 +88,6 @@ object fmImport1CMatchingFileds: TfmImport1CMatchingFileds
         Value = 100.000000000000000000
       end>
     TabOrder = 1
-    ExplicitLeft = 80
-    ExplicitTop = 112
-    ExplicitWidth = 553
-    ExplicitHeight = 257
     object Panel3: TPanel
       Left = 0
       Top = 0
@@ -106,10 +96,6 @@ object fmImport1CMatchingFileds: TfmImport1CMatchingFileds
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitLeft = 1
-      ExplicitTop = 1
-      ExplicitWidth = 275
-      ExplicitHeight = 255
       object RzLabel1: TRzLabel
         AlignWithMargins = True
         Left = 14
@@ -137,10 +123,12 @@ object fmImport1CMatchingFileds: TfmImport1CMatchingFileds
           #1047#1085#1072#1095#1077#1085#1080#1077
           #1047#1072#1075#1086#1083#1086#1074#1082#1080' '#1080#1079' CSV')
         OnGetPickList = vlDivisionGetPickList
-        ExplicitHeight = 406
         ColWidths = (
           150
           182)
+        RowHeights = (
+          18
+          18)
       end
     end
     object Panel4: TPanel
@@ -151,10 +139,6 @@ object fmImport1CMatchingFileds: TfmImport1CMatchingFileds
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 276
-      ExplicitTop = 1
-      ExplicitWidth = 276
-      ExplicitHeight = 255
       object RzLabel2: TRzLabel
         AlignWithMargins = True
         Left = 14
@@ -185,11 +169,12 @@ object fmImport1CMatchingFileds: TfmImport1CMatchingFileds
         Align = alClient
         TabOrder = 0
         OnGetPickList = vlEmployeeGetPickList
-        ExplicitWidth = 342
-        ExplicitHeight = 406
         ColWidths = (
           150
           185)
+        RowHeights = (
+          18
+          18)
       end
     end
   end

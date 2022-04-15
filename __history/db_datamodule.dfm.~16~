@@ -1,0 +1,38 @@
+object DBDataModule: TDBDataModule
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Height = 276
+  Width = 512
+  object DBConnection: TUniConnection
+    ProviderName = 'MySQL'
+    Port = 3306
+    Database = 'oit_project'
+    SpecificOptions.Strings = (
+      'MySQL.UseUnicode=True')
+    Username = 'root'
+    Server = 'localhost'
+    Connected = True
+    LoginPrompt = False
+    BeforeConnect = DBConnectionBeforeConnect
+    Left = 32
+    Top = 16
+    EncryptedPassword = 'A9FF9AFF9CFF8DFF9AFF94FF'
+  end
+  object MysqlDriver: TMySQLUniProvider
+    Left = 32
+    Top = 72
+  end
+  object qDivision: TUniQuery
+    SQLInsert.Strings = (
+      'INSERT '
+      
+        'INTO divisions(div_pid,div_name,div_comment,div_sync1c,div_sync1' +
+        'c_id,div_sync1c_pid,div_sync1c_name) '
+      
+        'VALUES(:pid, :name, :comment, :sync1c, :sync1c_id, :sync1c_pid, ' +
+        ':sync1c_name)')
+    Connection = DBConnection
+    Left = 224
+    Top = 88
+  end
+end
