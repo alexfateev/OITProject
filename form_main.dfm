@@ -2,8 +2,8 @@ object fmMain: TfmMain
   Left = 0
   Top = 0
   Caption = 'fmMain'
-  ClientHeight = 329
-  ClientWidth = 762
+  ClientHeight = 604
+  ClientWidth = 927
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,14 +18,16 @@ object fmMain: TfmMain
   TextHeight = 13
   object RzStatusBar1: TRzStatusBar
     Left = 0
-    Top = 310
-    Width = 762
+    Top = 585
+    Width = 927
     Height = 19
     BorderInner = fsNone
     BorderOuter = fsNone
     BorderSides = [sdLeft, sdTop, sdRight, sdBottom]
     BorderWidth = 0
     TabOrder = 0
+    ExplicitTop = 290
+    ExplicitWidth = 762
     object stConnect: TRzGlyphStatus
       Left = 0
       Top = 0
@@ -61,7 +63,7 @@ object fmMain: TfmMain
     Left = 648
     Top = 136
     Bitmap = {
-      494C010102000800240010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800280010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000024000000330000
       0000000000000000000000000000000000000000000000000000000000000000

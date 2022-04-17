@@ -1,4 +1,4 @@
-ï»¿unit form_settings;
+unit form_settings;
 
 interface
 
@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzTabs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  db_datamodule, FileCtrl, service, Import1c;
+  db_datamodule, FileCtrl, service, Import1c, PConst;
 
 type
   TfmSettings = class(TForm)
@@ -69,23 +69,25 @@ procedure TfmSettings.btnOpenImport1CDirectoryClick(Sender: TObject);
 var
   s: string;
 begin
-  if SelectDirectory('Ð’Ñ‹Ð±Ð¾Ñ€ Ð¿Ð°Ð¿ÐºÐ¸', '', s, [sdShowEdit, sdShowShares, sdNewUI])
+  if SelectDirectory('Âûáîð ïàïêè', '', s, [sdShowEdit, sdShowShares, sdNewUI])
   then
     edImport1CDirectory.Text := s;
 end;
 
 procedure TfmSettings.btnSaveClick(Sender: TObject);
 begin
-//  SaveConfig;
+  SaveParam;
 end;
 
 procedure TfmSettings.btnImport1CInfoClick(Sender: TObject);
 var
-  info: TImport1CInfo;
+  Import1c: TImport1C;
 begin
-  info.Update;
-  ShowMessage(info.division + ':' + info.division_date + #13#10 +
-    info.employee_filename + ':' + info.employee_date);
+  Import1c := TImport1C.Create;
+//  Import1c.ShowInfo;
+//  Import1c.Details;
+  Import1c.Free;
+
 end;
 
 procedure TfmSettings.btnImport1CMatchingFieldsClick(Sender: TObject);
@@ -111,19 +113,19 @@ end;
 
 procedure TfmSettings.btnOkClick(Sender: TObject);
 begin
-//  SaveConfig;
+  SaveParam;
   ModalResult := mrOk;
 end;
 
 procedure TfmSettings.FormCreate(Sender: TObject);
 begin
   Caption := CAPTION_SETTINGSFORM;
-  LoadConfig;
+  LoadParam;
 end;
 
 procedure TfmSettings.LoadParam;
 begin
-  conf := LoadConfig;
+  conf := GlobalConfigLoad;
   edImport1CDirectory.Text := conf.Import1CDirectory;
   edImport1CFileDivision.Text := conf.Import1CFileDivision;
   edImport1CFileEmployee.Text := conf.Import1CFileEmployee;
@@ -138,7 +140,7 @@ begin
   conf.Import1CFileEmployee := Trim(edImport1CFileEmployee.Text);
   conf.Import1CCheckNewFileOnStart := cbImport1CCheckOnStart.Checked;
   conf.Import1CDelimiter := edImport1cDelimiter.Text;
-  SaveConfig(conf);
+  GlobalConfigSave(conf);
 end;
 
 end.

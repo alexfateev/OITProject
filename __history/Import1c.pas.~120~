@@ -99,8 +99,7 @@ end;
 
 procedure TImport1C.Details;
 begin
-  if fDetail <> '' then
-    MessageDlg(fDetail,mtError,[mbOK],0);
+  ShowMessage(fDetail);
 end;
 
 function TImport1C.GetFileAge(filename: string): TDateTime;
@@ -110,7 +109,7 @@ begin
   except
     on E: Exception do
       begin
-        fDetail := fDetail + 'Не удалось получить дату создания файла:'+E.Message+#13#10;
+        fDetail := fDetail + 'Не удалось загрузить заголовок файла:'+E.Message+#13#10;
         result := 0
       end;
   end;
@@ -134,8 +133,7 @@ begin
     if f.Count <> 0 then
       r.DelimitedText := f[0];
   except
-    on E:Exception do
-      fDetail := fDetail + 'Не удалось загрузить заголовок файла: '+e.Message+#13#10;
+
   end;
   result := r;
 end;
@@ -161,11 +159,9 @@ begin
     end;
   except
     on E: Exception do
-      fDetail := fDetail + 'Не удалось найти файл: '+e.Message+#13#10;
+      fDetail := fDetail + 'Не удалось найти файл:'+e.Message+#13#10;
     // MessageDlg(E.ClassName + ':' + E.Message, mtError, [mbOK], 0);
   end;
-  if Result = '' then
-    fDetail := fDetail + 'Не удалось найти файл.'+#13#10;
 end;
 
 function TImport1C.IsAllReady: boolean;
@@ -192,7 +188,7 @@ begin
     f.LoadFromFile(filename);
   except
     on E: Exception do
-      fDetail := fDetail + 'Не удалось заугрузить файл: '+E.Message+#13#10;
+      fDetail := fDetail + 'Не удалось заугрузить файл:'+E.Message+#13#10;
     // MessageDlg(E.ClassName + ':' + E.Message, mtError, [mbOK], 0);
   end;
   result := f;

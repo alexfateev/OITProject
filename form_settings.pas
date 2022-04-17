@@ -84,7 +84,6 @@ var
   Import1c: TImport1C;
 begin
   Import1c := TImport1C.Create;
-  Import1c.ShowInfo;
   Import1c.Details;
   Import1c.Free;
 

@@ -99,8 +99,7 @@ end;
 
 procedure TImport1C.Details;
 begin
-  if fDetail <> '' then
-    MessageDlg(fDetail,mtError,[mbOK],0);
+  MessageDlg(fDetail,mtError,[mbOK],0);
 end;
 
 function TImport1C.GetFileAge(filename: string): TDateTime;

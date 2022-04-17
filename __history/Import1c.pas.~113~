@@ -35,6 +35,7 @@ type
 
     procedure Prepare;
     function IsAllReady: boolean;
+    procedure ShowInfo;
     procedure Details;
     constructor Create; overload;
     destructor Destroy; overload;
@@ -98,22 +99,32 @@ begin
 end;
 
 procedure TImport1C.Details;
+var
+  text: string;
 begin
-  if fDetail <> '' then
-    MessageDlg(fDetail,mtError,[mbOK],0);
+  if fEmployeeFilename.IsEmpty then
+    text := text + 'Файл сотрудников не найден' + #13#10;
+  if fEmployeeFile = nil then
+    text := text + 'Файл пуст';
+
+  if not text.IsEmpty then
+    ShowMessage(text);
 end;
 
 function TImport1C.GetFileAge(filename: string): TDateTime;
+var
+  intFileAge: LongInt;
 begin
-  try
-    result := Tfile.GetCreationTime(filename);
-  except
-    on E: Exception do
-      begin
-        fDetail := fDetail + 'Не удалось получить дату создания файла:'+E.Message+#13#10;
-        result := 0
-      end;
-  end;
+  intFileAge := Tfile.GetCreationTime(filename);
+  if intFileAge = -1 then
+    result := 0
+  else
+    result := intFileAge;
+  // try
+  // result := ;
+  // except
+  // result := 0;
+  // end;
 end;
 
 function TImport1C.GetFileName(filename: string; path: string): string;
@@ -129,14 +140,9 @@ var
   r: TStringList;
 begin
   r := TStringList.Create;
-  try
-    r.Delimiter := StrToChar(fconfig.Import1CDelimiter);
-    if f.Count <> 0 then
-      r.DelimitedText := f[0];
-  except
-    on E:Exception do
-      fDetail := fDetail + 'Не удалось загрузить заголовок файла: '+e.Message+#13#10;
-  end;
+  r.Delimiter := StrToChar(fconfig.Import1CDelimiter);
+  if f.Count <> 0 then
+    r.DelimitedText := f[0];
   result := r;
 end;
 
@@ -161,11 +167,8 @@ begin
     end;
   except
     on E: Exception do
-      fDetail := fDetail + 'Не удалось найти файл: '+e.Message+#13#10;
-    // MessageDlg(E.ClassName + ':' + E.Message, mtError, [mbOK], 0);
+      // MessageDlg(E.ClassName + ':' + E.Message, mtError, [mbOK], 0);
   end;
-  if Result = '' then
-    fDetail := fDetail + 'Не удалось найти файл.'+#13#10;
 end;
 
 function TImport1C.IsAllReady: boolean;
@@ -176,11 +179,8 @@ begin
   text := '';
   value := false;
   if fEmployeeFilename.IsEmpty then
-    text := text + 'Файл сотрудников не найден.'+#13#10;
-  if fEmployeeFile = nil then
-    text := text + 'Файл пуст';
 
-  result := value;
+    result := value;
 end;
 
 function TImport1C.LoadFile(filename: string): TStringList;
@@ -192,8 +192,7 @@ begin
     f.LoadFromFile(filename);
   except
     on E: Exception do
-      fDetail := fDetail + 'Не удалось заугрузить файл: '+E.Message+#13#10;
-    // MessageDlg(E.ClassName + ':' + E.Message, mtError, [mbOK], 0);
+      // MessageDlg(E.ClassName + ':' + E.Message, mtError, [mbOK], 0);
   end;
   result := f;
 end;
@@ -201,7 +200,6 @@ end;
 procedure TImport1C.Prepare;
 begin
   fconfig := GlobalConfigLoad;
-  fDetail := '';
 
   fEmployeeFilename := GetFileName(fconfig.Import1CFileEmployee,
     fconfig.Import1CDirectory);
@@ -214,6 +212,12 @@ begin
   fDivisionFile := LoadFile(fDivisionFilename);
   fDivisionHead := GetHeaderFromFile(fDivisionFile);
   fDivisionFileDate := GetFileAge(fDivisionFilename);
+end;
+
+procedure TImport1C.ShowInfo;
+begin
+  MessageDlg(fEmployeeFilename + #13#10 + DateToStr(fEmployeeFileDate) + #13#10
+    + fEmployeeHead.text, mtInformation, [mbOK], 0);
 end;
 
 end.
