@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, RzPanel, Vcl.StdCtrls,
   System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList, Vcl.Menus,
-  RzStatus;
+  RzStatus, PConst;
 
 type
   TfmMain = class(TForm)
@@ -42,7 +42,7 @@ implementation
 
 {$R *.dfm}
 
-uses db_datamodule, form_connection_edit, form_settings;
+uses db_datamodule, form_connection_edit, form_settings, Import1c;
 
 procedure TfmMain.acExitExecute(Sender: TObject);
 begin
@@ -71,7 +71,6 @@ procedure TfmMain.FormCreate(Sender: TObject);
 begin
   Caption := CAPTION_MAINFORM;
   UpdateConnectionStatus;
-
 end;
 
 procedure TfmMain.UpdateConnectionStatus;

@@ -2,7 +2,7 @@ object fmMain: TfmMain
   Left = 0
   Top = 0
   Caption = 'fmMain'
-  ClientHeight = 604
+  ClientHeight = 564
   ClientWidth = 927
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,7 +18,7 @@ object fmMain: TfmMain
   TextHeight = 13
   object RzStatusBar1: TRzStatusBar
     Left = 0
-    Top = 585
+    Top = 545
     Width = 927
     Height = 19
     BorderInner = fsNone
@@ -26,8 +26,6 @@ object fmMain: TfmMain
     BorderSides = [sdLeft, sdTop, sdRight, sdBottom]
     BorderWidth = 0
     TabOrder = 0
-    ExplicitTop = 290
-    ExplicitWidth = 762
     object stConnect: TRzGlyphStatus
       Left = 0
       Top = 0
@@ -40,6 +38,22 @@ object fmMain: TfmMain
       ImageIndex = 0
       DisabledIndex = 1
       Images = ImageList16
+    end
+  end
+  object PageControl1: TPageControl
+    Left = 0
+    Top = 0
+    Width = 927
+    Height = 545
+    ActivePage = TabSheet1
+    Align = alClient
+    TabOrder = 1
+    object TabSheet1: TTabSheet
+      Caption = 'TabSheet1'
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'TabSheet2'
+      ImageIndex = 1
     end
   end
   object ActionList1: TActionList
@@ -63,7 +77,7 @@ object fmMain: TfmMain
     Left = 648
     Top = 136
     Bitmap = {
-      494C010102000800280010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800300010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000024000000330000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -210,6 +224,12 @@ object fmMain: TfmMain
       object N4: TMenuItem
         Action = acExit
       end
+    end
+    object N7: TMenuItem
+      Caption = #1057#1087#1088#1072#1074#1086#1095#1085#1080#1082
+    end
+    object N6: TMenuItem
+      Caption = #1059#1095#1077#1090' '#1090#1077#1093#1085#1080#1082#1080
     end
     object N2: TMenuItem
       Caption = #1057#1077#1088#1074#1080#1089

@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, RzPanel, Vcl.StdCtrls,
   System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList, Vcl.Menus,
-  RzStatus, PConst;
+  RzStatus, PConst, Vcl.ComCtrls;
 
 type
   TfmMain = class(TForm)
@@ -24,6 +24,11 @@ type
     stConnect: TRzGlyphStatus;
     acSettingsShow: TAction;
     N5: TMenuItem;
+    N6: TMenuItem;
+    N7: TMenuItem;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
     procedure acShowConnectionEditExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure acExitExecute(Sender: TObject);

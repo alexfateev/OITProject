@@ -7,7 +7,10 @@ uses
   form_connection_edit in 'form_connection_edit.pas' {fmConnectionEdit},
   form_settings in 'form_settings.pas' {fmSettings},
   Import1c in 'Import1c.pas',
-  form_Import1C_MatchingFileds in 'form_Import1C_MatchingFileds.pas' {Form1};
+  form_Import1C_MatchingFileds in 'form_Import1C_MatchingFileds.pas' {fmImport1CMatchingFileds},
+  service in 'service.pas',
+  PConst in 'PConst.pas',
+  form_handbook in 'form_handbook.pas' {fmHandbook};
 
 {$R *.res}
 
@@ -17,7 +20,7 @@ begin
   Application.Title := 'OIT Project';
   Application.CreateForm(TDBDataModule, DBDataModule);
   Application.CreateForm(TfmMain, fmMain);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfmHandbook, fmHandbook);
   Application.Run;
 
 end.

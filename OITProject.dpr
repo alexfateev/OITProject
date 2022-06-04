@@ -9,7 +9,8 @@ uses
   Import1c in 'Import1c.pas',
   form_Import1C_MatchingFileds in 'form_Import1C_MatchingFileds.pas' {fmImport1CMatchingFileds},
   service in 'service.pas',
-  PConst in 'PConst.pas';
+  PConst in 'PConst.pas',
+  form_handbook in 'form_handbook.pas' {fmHandbook};
 
 {$R *.res}
 
